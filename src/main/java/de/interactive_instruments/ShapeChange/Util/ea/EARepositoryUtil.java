@@ -302,10 +302,10 @@ public class EARepositoryUtil extends AbstractEAUtil {
 	File repfile = repfileIn;
 
 	/*
-	 * Check file name; append '.eap' if necessary.
+	 * Check file name; append '.qea' if necessary.
 	 */
-	if (!repfileIn.getName().toLowerCase().endsWith(".eap")) {
-	    repfile = new java.io.File(repfileIn.getName() + ".eap");
+	if (!repfileIn.getName().toLowerCase().endsWith(".qea")) {
+	    repfile = new java.io.File(repfileIn.getName() + ".qea");
 	}
 
 	String absname = repfile.getAbsolutePath();

@@ -77,7 +77,7 @@ public class UmlModelConstants {
      * Type: String
      *
      * <p>
-     * Default Value: ShapeChangeExport.eap
+     * Default Value: ShapeChangeExport.qea
      *
      * <p>
      * Explanation: The Enterprise architect EAP file to which the application
@@ -87,6 +87,7 @@ public class UmlModelConstants {
      * Applies to Rule(s): none – default behavior
      */
     public static final String PARAM_MODEL_FILENAME = "modelFilename";
+    public static final String PARAM_MODEL_FILENAME_DEFAULT = "ShapeChangeExport.qea";
 
     /**
      * Alias: none

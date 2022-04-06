@@ -152,7 +152,7 @@ public class UmlModel implements SingleTarget, MessageSource {
 		outputDirectory = ".";
 
 	    outputFilename = options.parameterAsString(this.getClass().getName(),
-		    UmlModelConstants.PARAM_MODEL_FILENAME, "ShapeChangeExport.eap", false, true);
+		    UmlModelConstants.PARAM_MODEL_FILENAME, UmlModelConstants.PARAM_MODEL_FILENAME_DEFAULT, false, true);
 
 	    outputPackageName = options.parameterAsString(this.getClass().getName(),
 		    UmlModelConstants.PARAM_OUTPUT_PACKAGE_NAME, "ShapeChangeOutput", false, true);
@@ -211,8 +211,8 @@ public class UmlModel implements SingleTarget, MessageSource {
 
 	    if (!repfile.exists()) {
 		ex = false;
-		if (!outputFilename.toLowerCase().endsWith(".eap")) {
-		    outputFilename += ".eap";
+		if (!outputFilename.toLowerCase().endsWith(".qea")) {
+		    outputFilename += ".qea";
 		    repfile = new java.io.File(outputFilename);
 		    ex = repfile.exists();
 		}
@@ -223,37 +223,37 @@ public class UmlModel implements SingleTarget, MessageSource {
 	    if (!ex) {
 
 		/*
-		 * Either copy EAP template, or create new repository.
+		 * Either copy qea template, or create new repository.
 		 */
 
-		String eapTemplateFilePath = options.parameter(this.getClass().getName(),
+		String qeaTemplateFilePath = options.parameter(this.getClass().getName(),
 			UmlModelConstants.PARAM_EAP_TEMPLATE);
 
-		if (eapTemplateFilePath != null) {
+		if (qeaTemplateFilePath != null) {
 
 		    // copy template file either from remote or local URI
-		    if (eapTemplateFilePath.toLowerCase().startsWith("http")) {
+		    if (qeaTemplateFilePath.toLowerCase().startsWith("http")) {
 			try {
-			    URL templateUrl = new URL(eapTemplateFilePath);
+			    URL templateUrl = new URL(qeaTemplateFilePath);
 			    FileUtils.copyURLToFile(templateUrl, repfile);
 			} catch (MalformedURLException e1) {
-			    result.addFatalError(this, 51, eapTemplateFilePath, e1.getMessage());
+			    result.addFatalError(this, 51, qeaTemplateFilePath, e1.getMessage());
 			    throw new ShapeChangeAbortException();
 			} catch (IOException e2) {
 			    result.addFatalError(this, 53, e2.getMessage());
 			    throw new ShapeChangeAbortException();
 			}
 		    } else {
-			File eaptemplate = new File(eapTemplateFilePath);
-			if (eaptemplate.exists()) {
+			File qeatemplate = new File(qeaTemplateFilePath);
+			if (qeatemplate.exists()) {
 			    try {
-				FileUtils.copyFile(eaptemplate, repfile);
+				FileUtils.copyFile(qeatemplate, repfile);
 			    } catch (IOException e) {
 				result.addFatalError(this, 53, e.getMessage());
 				throw new ShapeChangeAbortException();
 			    }
 			} else {
-			    result.addFatalError(this, 52, eaptemplate.getAbsolutePath());
+			    result.addFatalError(this, 52, qeatemplate.getAbsolutePath());
 			    throw new ShapeChangeAbortException();
 			}
 		    }
@@ -981,11 +981,11 @@ public class UmlModel implements SingleTarget, MessageSource {
 	    return "URL '$1$' provided for configuration parameter " + UmlModelConstants.PARAM_EAP_TEMPLATE
 		    + " is malformed. Execution will be aborted. Exception message is: '$2$'.";
 	case 52:
-	    return "EAP template at '$1$' does not exist or cannot be read. Check the value of the configuration parameter '"
+	    return "EA repository file template at '$1$' does not exist or cannot be read. Check the value of the configuration parameter '"
 		    + UmlModelConstants.PARAM_EAP_TEMPLATE
 		    + "' and ensure that: a) it contains the path to the template file and b) the file can be read by ShapeChange.";
 	case 53:
-	    return "Exception encountered when copying EAP template file to output destination. Message is: $1$.";
+	    return "Exception encountered when copying EA repository file template file to output destination. Message is: $1$.";
 	case 54:
 	    return "Syntax exception while compiling the regular expression defined by target parameter '$1$': '$2$'.";
 

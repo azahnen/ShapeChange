@@ -48,7 +48,7 @@
 			<targetParameter name="omitOutputPackageDateTime" value="true" />
 			<targetParameter name="mergeConstraintCommentsIntoText" value="true" />
 			<targetParameter name="eapTemplate"
-				value="src/main/resources/templates/UmlModel_template.eap" />
+				value="src/main/resources/templates/UmlModel_template.qea" />
 			<mapEntries>
 				<MapEntry type="application schema" rule="*"
 					targetType="ShapeChange::applicationSchema" param="stereotype" />

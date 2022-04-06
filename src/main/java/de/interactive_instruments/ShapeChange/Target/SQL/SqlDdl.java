@@ -912,34 +912,34 @@ public class SqlDdl implements SingleTarget, MessageSource {
 
 		if (createDatabaseModel) {
 
-		    String fileNameDM = outputFilename + ".eap";
+		    String fileNameDM = outputFilename + ".qea";
 		    File eap = new File(outputDirectory, fileNameDM);
 
-		    String eapFilePathByConfig = options.parameter(SqlDdl.class.getName(),
+		    String eaRepoFilePathByConfig = options.parameter(SqlDdl.class.getName(),
 			    DatabaseModelConstants.PARAM_DATAMODEL_EAP_PATH);
 
-		    if (eapFilePathByConfig != null) {
+		    if (eaRepoFilePathByConfig != null) {
 
-			if (eapFilePathByConfig.toLowerCase().startsWith("http")) {
+			if (eaRepoFilePathByConfig.toLowerCase().startsWith("http")) {
 
 			    // copy eap file from remote URI
 			    try {
-				URL eapUrl = new URL(eapFilePathByConfig);
+				URL eapUrl = new URL(eaRepoFilePathByConfig);
 				FileUtils.copyURLToFile(eapUrl, eap);
-				result.addInfo(this, 30, eapFilePathByConfig, eap.getAbsolutePath());
+				result.addInfo(this, 30, eaRepoFilePathByConfig, eap.getAbsolutePath());
 			    } catch (MalformedURLException e1) {
-				result.addError(this, 28, eapFilePathByConfig);
+				result.addError(this, 28, eaRepoFilePathByConfig);
 			    } catch (IOException e2) {
 				result.addFatalError(this, 29, e2.getMessage());
 			    }
 
 			} else {
 
-			    result.addInfo(this, 31, eapFilePathByConfig);
-			    eap = new File(eapFilePathByConfig);
+			    result.addInfo(this, 31, eaRepoFilePathByConfig);
+			    eap = new File(eaRepoFilePathByConfig);
 
 			    /*
-			     * In case that the .eap file does not exist yet,
+			     * In case that the EA repository file does not exist yet,
 			     * EARepositoryUtil.openRepository() also takes care of creating the necessary
 			     * directory structure, so no need to do this here.
 			     */

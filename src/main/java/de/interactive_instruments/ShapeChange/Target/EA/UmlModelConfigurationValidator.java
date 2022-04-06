@@ -96,7 +96,7 @@ public class UmlModelConfigurationValidator extends AbstractConfigurationValidat
 	    String outputDirectory = outputDirectoryBase.trim() + File.separator + modelProviderId;
 
 	    String outputFilename = config.parameterAsString(UmlModelConstants.PARAM_MODEL_FILENAME,
-		    "ShapeChangeExport.eap", false, true);
+		    UmlModelConstants.PARAM_MODEL_FILENAME_DEFAULT, false, true);
 
 	    /*
 	     * Make sure repository file exists
@@ -124,8 +124,8 @@ public class UmlModelConfigurationValidator extends AbstractConfigurationValidat
 
 	    if (!repfile.exists()) {
 		ex = false;
-		if (!outputFilename.toLowerCase().endsWith(".eap")) {
-		    outputFilename += ".eap";
+		if (!outputFilename.toLowerCase().endsWith(".qea")) {
+		    outputFilename += ".qea";
 		    repfile = new java.io.File(outputFilename);
 		    ex = repfile.exists();
 		}

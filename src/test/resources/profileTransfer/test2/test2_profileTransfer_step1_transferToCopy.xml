@@ -26,7 +26,7 @@
 			mode="enabled" inputs="INPUT">
 			<targetParameter name="outputDirectory"
 				value="testResults/profileTransfer/test2/results/transfer" />
-			<targetParameter name="repositoryFileNameOrConnectionString" value="src/test/resources/profileTransfer/test2/test2_profileTransfer.eap" />
+			<targetParameter name="repositoryFileNameOrConnectionString" value="src/test/resources/profileTransfer/test2/test2_profileTransfer.qea" />
 			<targetParameter name="transferToCopyOfEAP" value="true" />
 			<targetParameter name="deleteExistingProfiles" value="true" />
 			<targetParameter name="profilesToTransfer" value="C" />
